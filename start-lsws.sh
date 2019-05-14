@@ -1,7 +1,7 @@
 echo 'Changing port to...'
 echo ${PORT}
 
-if test -n ${PORT}
+if [[ -n "${PORT}" ]]
 then    
     cp /etc/litespeed/httpd_config.conf /etc/litespeed/httpd_config.conf.bak
     sed -e "s/*:80/*:${PORT}/" /etc/litespeed/httpd_config.conf.bak > /etc/litespeed/httpd_config.conf

@@ -26,7 +26,7 @@ RUN rm -rf /var/lib/litespeed/Example
 RUN mkdir -p /var/lib/litespeed/web
 RUN mkdir -p /var/lib/litespeed/web/logs/
 COPY var/lib/litespeed/web/ /var/lib/litespeed/web/
-RUN chown -R nobody:nobody /var/lib/litespeed/web/
+RUN chown -R lsadm:lsadm /var/lib/litespeed/web/
 
 RUN rm -rf /etc/litespeed/vhosts/Example
 COPY var/lib/litespeed/conf/vhosts/web/ /etc/litespeed/vhosts/web/
