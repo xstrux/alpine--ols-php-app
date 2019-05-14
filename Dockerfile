@@ -4,6 +4,8 @@ MAINTAINER "ihsanberahim" <ihsanberahim@gmail.com>
 
 ARG HOSTNAME
 
+ADD start-lsws.sh /start-lsws.sh
+
 #Install supervisor
 RUN apk add --update supervisor
 ADD supervisord.conf /supervisord.conf
@@ -34,8 +36,6 @@ RUN rm -f /etc/litespeed/httpd_config.conf
 COPY var/lib/litespeed/conf/httpd_config.conf /etc/litespeed/httpd_config.conf
 RUN chown lsadm:lsadm /etc/litespeed/httpd_config.conf
 
-EXPOSE 80 7080
-
 CMD ["/bin/sh", "-c", "cd /var/lib/litespeed/web/"]
 
-ENTRYPOINT ["/bin/sh", "-c", "/var/lib/litespeed/bin/lswsctrl start && /usr/bin/supervisord -n -c /supervisord.conf"]
+ENTRYPOINT ["/bin/sh", "/start-lsws.sh"]
